@@ -3,8 +3,8 @@ scikit-nni
 ==========
 
 
-.. image:: https://img.shields.io/pypi/v/sknni.svg
-        :target: https://pypi.python.org/pypi/sknni
+.. image:: https://img.shields.io/pypi/v/scikit-nni.svg
+        :target: https://pypi.python.org/pypi/scikit-nni
 
 .. image:: https://img.shields.io/travis/ksachdeva/scikit-nni.svg
         :target: https://travis-ci.org/ksachdeva/scikit-nni
