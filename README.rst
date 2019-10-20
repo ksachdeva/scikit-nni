@@ -144,7 +144,7 @@ Vector Machine.
 Search Space Section
 ********************
 
-This section corresponds to the search space for your hyperparameters. When you ```nnictrl``` this is typically
+This section corresponds to the search space for your hyperparameters. When you use ```nnictrl``` this is typically
 specified in search-space.json file.
 
 See https://nni.readthedocs.io/en/latest/Tutorial/SearchSpaceSpec.html to learn more about the search space syntax.
@@ -227,12 +227,14 @@ Step 2 - Generate your experiment
     sknni generate-experiment --spec example/basic_svc.nni.yml --output-dir experiments
 
 
-Above command will create a directory experiments/svc-classification will following files
+Above command will create a directory experiments/svc-classification with the following files
 
     - The original specification file i.e. basic_svc.nni.yml (used during experiment run as well)
     - Generated Microsoft NNI's config.yml
     - Generated Microsoft NNI's search-space.json
 
+Note - there is no python file as typically shown in the examples of Microsoft NNI as the command
+in ends up invoking `sknni` entry point when the experiment is run.
 
 Step 3 - Run your experiment
 #################################
