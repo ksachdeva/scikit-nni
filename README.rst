@@ -6,8 +6,8 @@ scikit-nni
 .. image:: https://img.shields.io/pypi/v/sknni.svg
         :target: https://pypi.python.org/pypi/sknni
 
-.. image:: https://img.shields.io/travis/ksachdeva/sknni.svg
-        :target: https://travis-ci.org/ksachdeva/sknni
+.. image:: https://img.shields.io/travis/ksachdeva/scikit-nni.svg
+        :target: https://travis-ci.org/ksachdeva/scikit-nni
 
 .. image:: https://readthedocs.org/projects/scikit-nni/badge/?version=latest
         :target: https://scikit-nni.readthedocs.io/en/latest/?badge=latest
@@ -18,7 +18,7 @@ Hyper parameters search for scikit-learn components using Microsoft NNI
 
 
 * Free software: Apache Software License 2.0
-* Documentation: https://sknni.readthedocs.io.
+* Documentation: https://scikit-nni.readthedocs.io.
 
 
 Features
