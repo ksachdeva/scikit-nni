@@ -52,7 +52,10 @@ def run_experiment():
     experiment_spec = _read_experiment_spec(config_files[0])
 
     # get the datasource
-    params = experiment_spec['dataSource']['params']
+    params = {}
+    if 'params' in experiment_spec['dataSource'].keys():
+        params = experiment_spec['dataSource']['params']
+
     datasource = get_class(experiment_spec['dataSource']['reader'])()
 
     (X_train,y_train), (X_test, y_test) = datasource(**params)
