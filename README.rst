@@ -48,7 +48,7 @@ I plan to add more datasource readers (e.g. CSV, libSVM format files etc). Contr
 Usage
 -----
 
-.. image:: images/demo.gif
+.. image:: https://github.com/ksachdeva/scikit-nni/raw/master/images/demo.gif
 
 
 Step 1 - Write specification file
