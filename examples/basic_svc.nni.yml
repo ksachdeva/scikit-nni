@@ -1,0 +1,50 @@
+sknni: 0.1
+
+dataSource:
+    reader: sknni.datasource.NpzClassificationSource
+    params:
+        dir_path: /Users/ksachdeva/Desktop/Dev/projects/hid-dev-innovation/ml/temp-output/numpds-enrX
+
+sklearnPipeline:
+    name: normalizer_svc
+    steps:
+        normalizer: sklearn.preprocessing.Normalizer
+        svc: sklearn.svm.SVC
+
+nniConfigSearchSpace:
+    - normalizer:
+        norm:
+            _type: choice
+            _value: [l2, l1]
+    - svc:
+        C:
+            _type: uniform
+            _value: [0.1,0.0]
+        kernel:
+            _type: choice
+            _value: [linear,rbf,poly,sigmoid]
+        degree:
+            _type: choice
+            _value: [1,2,3,4]
+        gamma:
+            _type: uniform
+            _value: [0.01,0.1]
+        coef0:
+            _type: uniform
+            _value: [0.01,0.1]
+
+
+nniConfig:
+    authorName: default
+    experimentName: example_sklearn-classification
+    trialConcurrency: 1
+    maxExecDuration: 1h
+    maxTrialNum: 100
+    trainingServicePlatform: local
+    useAnnotation: false
+    tuner:
+        builtinTunerName: TPE
+        classArgs:
+            optimize_mode: maximize
+    trial:
+        gpuNum: 0
