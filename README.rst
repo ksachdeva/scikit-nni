@@ -9,8 +9,8 @@ scikit-nni
 .. image:: https://img.shields.io/travis/ksachdeva/sknni.svg
         :target: https://travis-ci.org/ksachdeva/sknni
 
-.. image:: https://readthedocs.org/projects/sknni/badge/?version=latest
-        :target: https://sknni.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/scikit-nni/badge/?version=latest
+        :target: https://scikit-nni.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
 
@@ -19,10 +19,6 @@ Hyper parameters search for scikit-learn components using Microsoft NNI
 
 * Free software: Apache Software License 2.0
 * Documentation: https://sknni.readthedocs.io.
-
-
-
-
 
 
 Features
@@ -34,8 +30,7 @@ Features
 * Support for using custom datasource reader
 * Single configuration file to define NNI configuration and search space
 
-I plan to add more datasource readers (e.g. CSV, libSVM format files etc). Contributions are
-always welcome !
+I plan to add more datasource readers (e.g. CSV, libSVM format files etc). Contributions are always welcome !
 
 Usage
 -----

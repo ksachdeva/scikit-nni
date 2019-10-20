@@ -97,8 +97,7 @@ Here are the important things to note about this section -
 
 - The syntax is the same (except we are using YAML here instead of JSON) for specifiying parameter types and ranges.
 - You **MUST** specifiy the parameters corresponding to the step in your scikit pipeline.
-- You **MUST** use the names of the parameters that are same as the ones accepted by scikit-learn components (i.e.
-preprocessors, estimators etc).
+- You **MUST** use the names of the parameters that are same as the ones accepted by scikit-learn components (i.e. preprocessors, estimators etc).
 
 Below is an example of this section.
 

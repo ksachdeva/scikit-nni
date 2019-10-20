@@ -12,7 +12,7 @@ To install scikit-nni, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install sknni
+    $ pip install scikit-nni
 
 This is the preferred method to install scikit-nni, as it will always install the most recent stable release.
 
@@ -32,13 +32,13 @@ You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/ksachdeva/sknni
+    $ git clone git://github.com/ksachdeva/scikit-nni
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl -OJL https://github.com/ksachdeva/sknni/tarball/master
+    $ curl -OJL https://github.com/ksachdeva/scikit-nni/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/ksachdeva/sknni
-.. _tarball: https://github.com/ksachdeva/sknni/tarball/master
+.. _Github repo: https://github.com/ksachdeva/scikit-nni
+.. _tarball: https://github.com/ksachdeva/scikit-nni/tarball/master
