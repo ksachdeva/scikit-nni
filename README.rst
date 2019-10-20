@@ -51,8 +51,8 @@ Usage
 .. image:: https://github.com/ksachdeva/scikit-nni/raw/master/images/demo.gif
 
 
-Step 1 - Write specification file
-#################################
+Step 1 - Write a specification file
+###################################
 
 The specification file is essentially a YAML file but with extension `.nni.yml`
 
@@ -62,10 +62,10 @@ There are 4 parts (sections) in the configuration file.
 Datasource Section
 ******************
 
-This is where you will specify the (python) callable that `sknni` would invoking to the training and
-test dataset.
+This is where you will specify the (python) callable that `sknni` would be invoking to get the training
+and test dataset.
 
-The callable should return 2 values where each value is a `tuple` of two items. The first tuple
+The callable **must** return two values where each value is a `tuple` of two items. The first tuple
 consists of training data `(X_train, y_train)` and the second tuple consists of test data `(X_test, y_test)`.
 
 An example callable would look like this::
@@ -86,9 +86,9 @@ An example callable would look like this::
             return (X_train, y_train), (X_test, y_test)
 
 In the above example, the callable generates the train and test dataset. The callable can even have paramaters for e.g. in this
-example you could optionally pass the fraction of data to be used for testing purposes.
+example you could optionally pass the fraction of data to be used for testing.
 
-Now let's see how you would specify in the specification file.
+Now let's see how you would add it in the specification file.
 
 .. code-block:: yaml
 
@@ -102,7 +102,7 @@ Now let's see how you would specify in the specification file.
 Make sure that during the exeuction of the experiment your datasource (i.e. in this case `yourmodule.ACustomDataSource`)
 is available in the PYTHONPATH.
 
-Here is an additional example showing the usage of an built-in datasource reader
+Here is an additional example showing the usage of a built-in datasource reader
 
 .. code-block:: yaml
 
@@ -112,17 +112,22 @@ Here is an additional example showing the usage of an built-in datasource reader
             dir_path: /Users/ksachdeva/Desktop/Dev/myoss/scikit-nni/examples/data/multiclass-classification
 
 
+`NpzClassificationSource` expects that at `dir_path` you have two folders - train and test. In each folder are the files
+named as 0.npz, 1.npz etc. Every file contains that features for that corresponding class.
+
+The repository contains two such datasources to do binary and multiclass classifications.
+
 **************************
 Pipline definition Section
 **************************
 
-Below is the example of the section. You simply specify the list of steps of your typical scikit-learn Pipeline.
+Below is an example of this type of section. You simply specify the list of steps of your scikit-learn Pipeline.
 
 Note - The sequence of steps is very important.
 
 What you **MUST** ensure is that the full qualified name of your scikit-learn preprocessors, transformers and
-estimators is correctly specified. `sknni` uses reflection and introspection to create the instances so if you have a
-typo in the names and/or they are not available in your PYTHONPATH you will get an error at experiment execution time.
+estimators is correctly specified & spelled. `sknni` uses reflection and introspection to create the instances of these components
+so if you have a typo in the names and/or they are not available in your PYTHONPATH you will get an error at experiment execution time.
 
 .. code-block:: yaml
 
@@ -142,14 +147,16 @@ Search Space Section
 This section corresponds to the search space for your hyperparameters. When you ```nnictrl``` this is typically
 specified in search-space.json file.
 
+See https://nni.readthedocs.io/en/latest/Tutorial/SearchSpaceSpec.html to learn more about the search space syntax.
+
 Here are the important things to note about this section -
 
 - The syntax is the same (except we are using YAML here instead of JSON) for specifiying parameter types and ranges.
 - You **MUST** specifiy the parameters corresponding to the step in your scikit pipeline.
-- You **MUST** use the names of the parameters that are same as the ones accepted by scikit-learn components (i.e. preprocessors, estimators etc).
+- You **MUST** use the names of the parameters that are **same as** the ones accepted by the constructors of scikit-learn components (i.e. preprocessors, estimators etc).
 
 
-Below is an example of this section.
+Below is an example of this type of section.
 
 .. code-block:: yaml
 
@@ -186,8 +193,9 @@ This is the simplest of all sections as there is nothing new here from sknni per
 here your NNI's config.yaml here. You do not have to specify `codedir` and `command` field in the `trial` subsection as
 this is added by the sknni in the generated configuration files.
 
-Here is an example.
+See https://nni.readthedocs.io/en/latest/Tutorial/ExperimentConfig.html
 
+Here is an example of this type of section.
 
 .. code-block:: yaml
 
@@ -210,7 +218,6 @@ Here is an example.
             gpuNum: 0
 
 You can look at the various examples in the repository to learn how to define your own specification file.
-
 
 Step 2 - Generate your experiment
 #################################
