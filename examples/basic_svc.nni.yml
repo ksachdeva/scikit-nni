@@ -25,13 +25,16 @@ sklearnPipeline:
 # same name as you used earlier in the pipeline definition
 nniConfigSearchSpace:
     - normalizer:
+        # for this particular classification task I only need l2 so
+        # params are not really needed but specifying for documentation
+        # only
         norm:
             _type: choice
-            _value: [l2, l1]
+            _value: [l2]
     - svc:
         C:
             _type: uniform
-            _value: [0.1,0.0]
+            _value: [0.1,1]
         kernel:
             _type: choice
             _value: [linear,rbf,poly,sigmoid]
