@@ -17,6 +17,7 @@ sklearnPipeline:
     name: normalizer_svc
     steps:
         normalizer: sklearn.preprocessing.Normalizer
+        pca: sklearn.decomposition.PCA
         svc: sklearn.svm.SVC
 
 # This section is more or less compliant with the NNI's
@@ -24,13 +25,12 @@ sklearnPipeline:
 # should specify them with their corresponding step using the
 # same name as you used earlier in the pipeline definition
 nniConfigSearchSpace:
-    - normalizer:
-        # for this particular classification task I only need l2 so
-        # params are not really needed but specifying for documentation
-        # only
-        norm:
+    # do not need any params for normalizer as default is L2
+    # and for this classification task L2 is what is needed
+    - pca:
+        n_components:
             _type: choice
-            _value: [l2]
+            _value: [64,128]
     - svc:
         C:
             _type: uniform
@@ -53,7 +53,7 @@ nniConfigSearchSpace:
 # and code fields. They are automatically added by the sknni generator
 nniConfig:
     authorName: ksachdeva
-    experimentName: svc-classification
+    experimentName: pca-svc-classification
     trialConcurrency: 1
     maxExecDuration: 1h
     maxTrialNum: 100
