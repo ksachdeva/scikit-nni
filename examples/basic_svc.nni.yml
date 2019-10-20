@@ -50,7 +50,7 @@ nniConfigSearchSpace:
 # and code fields. They are automatically added by the sknni generator
 nniConfig:
     authorName: default
-    experimentName: example_sklearn-classification
+    experimentName: svc-classification
     trialConcurrency: 1
     maxExecDuration: 1h
     maxTrialNum: 100
