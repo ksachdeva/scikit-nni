@@ -31,6 +31,13 @@ def generate_experiment(spec, output_dir):
     # generate the nni config and search space
     nni_config_generator(experiment_spec, output_dir)
 
+    print("Done ! You are all set with your experiment.")
+    print()
+    print(f"Example cmd to run your experiment -")
+    print("="*80)
+    print(f"nnictl create --config {output_dir}/config.yml")
+    print("="*80)
+
 
 @click.command()
 def run_experiment():
@@ -38,6 +45,7 @@ def run_experiment():
     config_files = glob.glob(os.path.join(os.getcwd(), "*.nni.yml"))
 
     if len(config_files) == 0:
+        logging.error("Path to the nni specification is invalid !")
         raise ValueError("Could not find nni spec !")
 
     # read the spec
@@ -51,6 +59,8 @@ def run_experiment():
 
     # get the next nni parameters
     nni_hparams = nni.get_next_parameter()
+
+    logging.info(f"Received from NNI -> {nni_hparams}")
     pipeline = PipelineBuilder(experiment_spec)(nni_hparams)
 
     # fit
@@ -58,13 +68,18 @@ def run_experiment():
 
     # score
     score = pipeline.score(X_test, y_test)
+    logging.info(f"Final score from the pipeline is {score}")
 
     # report the score
     nni.report_final_result(score)
 
 @click.group()
-def cli():
-    pass
+@click.option('--verbose/--no-verbose', default=False, required=False, help='if verbose then debug level is printed')
+def cli(verbose):
+    if verbose:
+        logging.set_verbosity(logging.DEBUG)
+    else:
+        logging.set_verbosity(logging.INFO)
 
 cli.add_command(generate_experiment)
 cli.add_command(run_experiment)

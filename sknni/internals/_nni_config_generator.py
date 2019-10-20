@@ -4,6 +4,8 @@ import os
 import json
 import yaml
 
+from absl import logging
+
 def _generate_nni_config(nni_config, out_dir):
     # all we got to do is to update this dictionary
     # with missing items
@@ -40,6 +42,8 @@ def _generate_search_space(search_space, out_dir):
 
 
 def generate(experiment_spec, out_dir):
+    logging.debug(f"Writing search_space.json to {out_dir} ..")
     _generate_search_space(experiment_spec['nniConfigSearchSpace'], out_dir)
+    logging.debug(f"Writing config.yml to {out_dir} ..")
     _generate_nni_config(experiment_spec['nniConfig'], out_dir)
 
