@@ -39,7 +39,7 @@ def generate_experiment(spec, output_dir):
     print("="*80)
 
 
-@click.command()
+@click.command(hidden=True)
 def run_experiment():
     """ Run the experiment """
     config_files = glob.glob(os.path.join(os.getcwd(), "*.nni.yml"))
