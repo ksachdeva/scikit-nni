@@ -14,7 +14,7 @@ def _generate_nni_config(nni_config, out_dir):
     })
 
     nni_config['trial'].update({
-        'command' : 'python -m sknni.cli run-experiment',
+        'command' : 'python -m sknni.cli run-classification-experiment',
         'codeDir' : '.'
     })
 

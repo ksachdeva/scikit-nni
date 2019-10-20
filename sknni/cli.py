@@ -40,7 +40,7 @@ def generate_experiment(spec, output_dir):
 
 
 @click.command(hidden=True)
-def run_experiment():
+def run_classification_experiment():
     """ Run the experiment """
     config_files = glob.glob(os.path.join(os.getcwd(), "*.nni.yml"))
 
@@ -85,7 +85,7 @@ def cli(verbose):
         logging.set_verbosity(logging.INFO)
 
 cli.add_command(generate_experiment)
-cli.add_command(run_experiment)
+cli.add_command(run_classification_experiment)
 
 if __name__ == "__main__":
     cli()
