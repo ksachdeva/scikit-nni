@@ -28,6 +28,8 @@ def _generate_search_space(search_space, out_dir):
     # so that we can use the same names across various estimators
     complete_dict = {}
     for param in search_space:
+        if param.values() is None:
+            continue
         param_key = list(param.keys())[0]
         param_values = list(param.values())[0]
         for k,v in param_values.items():
