@@ -1,16 +1,28 @@
 sknni: 0.1
 
+# Datasource is how you specify which callable
+# sknni will invoke to get the data
 dataSource:
     reader: sknni.datasource.NpzClassificationSource
     params:
-        dir_path: /Users/ksachdeva/Desktop/Dev/projects/hid-dev-innovation/ml/temp-output/numpds-enrX
+        # Note - dir_path is a parameter name for NpzClassificationSource
+        # if you create another datasource then specify the arguments of the callable
+        # as per your datasource
+        dir_path: /Users/ksachdeva/Desktop/Dev/myoss/scikit-nni/examples/data/multiclass-classification
 
+# This is how you specify a pipeline and steps
+# In this example there are two steps - normalizer and svc
+# Please note that you would have to specify the fully qualified name for the classes
 sklearnPipeline:
     name: normalizer_svc
     steps:
         normalizer: sklearn.preprocessing.Normalizer
         svc: sklearn.svm.SVC
 
+# This section is more or less compliant with the NNI's
+# way of specifying the hyper parameters except that you
+# should specify them with their corresponding step using the
+# same name as you used earlier in the pipeline definition
 nniConfigSearchSpace:
     - normalizer:
         norm:
@@ -33,7 +45,9 @@ nniConfigSearchSpace:
             _type: uniform
             _value: [0.01,0.1]
 
-
+# This is exactly same as the one that of NNI
+# except that you do not have to specify the command
+# and code fields. They are automatically added by the sknni generator
 nniConfig:
     authorName: default
     experimentName: example_sklearn-classification
