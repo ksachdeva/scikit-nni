@@ -20,9 +20,6 @@ def _build_ds(npz_files):
     return np.array(X), np.array(y)
 
 
-def npz_classification_source(dir_path, shuffle_dataset=True):
-
-
 class NpzClassificationSource(object):
     def __init__(self):
         pass
