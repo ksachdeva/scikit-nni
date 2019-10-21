@@ -21,7 +21,7 @@ requirements = [
 
 setup_requirements = []
 
-test_requirements = []
+test_requirements = ['lightgbm']
 
 setup(
     author="Kapil Sachdeva",
