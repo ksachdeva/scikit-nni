@@ -158,8 +158,12 @@ so if you have a typo in the names and/or they are not available in your PYTHONP
     sklearnPipeline:
         name: normalizer_svc
         steps:
-            normalizer: sklearn.preprocessing.Normalizer
-            svc: sklearn.svm.SVC
+            normalizer:
+                type: sklearn.preprocessing.Normalizer
+                classArgs:
+                    norm: l2
+            svc:
+                type: sklearn.svm.SVC
 
 In above example, there are 2 steps. The first step is to normalize the data and the second step is train a classifier using Support
 Vector Machine.

@@ -16,9 +16,12 @@ dataSource:
 sklearnPipeline:
     name: normalizer_svc
     steps:
-        normalizer: sklearn.preprocessing.Normalizer
-        pca: sklearn.decomposition.PCA
-        svc: sklearn.svm.SVC
+        normalizer:
+            type: sklearn.preprocessing.Normalizer
+        pca:
+            type: sklearn.decomposition.PCA
+        svc:
+            type: sklearn.svm.SVC
 
 # This section is more or less compliant with the NNI's
 # way of specifying the hyper parameters except that you

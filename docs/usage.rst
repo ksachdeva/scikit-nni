@@ -80,8 +80,10 @@ typo in the names and/or they are not available in your PYTHONPATH you will get 
     sklearnPipeline:
         name: normalizer_svc
         steps:
-            normalizer: sklearn.preprocessing.Normalizer
-            svc: sklearn.svm.SVC
+            normalizer:
+                type: sklearn.preprocessing.Normalizer
+            svc:
+                type: sklearn.svm.SVC
 
 In above example, there are 2 steps. The first step is to normalize the data and the second step is train a classifier using Support
 Vector Machine.

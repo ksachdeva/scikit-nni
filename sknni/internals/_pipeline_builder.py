@@ -6,10 +6,12 @@ from sklearn.pipeline import Pipeline
 
 from ._utils import get_class
 
+
 class PipelineBuilder(object):
     def __init__(self, experiment_spec):
         self.steps = experiment_spec['sklearnPipeline']['steps']
-        self.params_info = self._param_info_from_search_space(experiment_spec['nniConfigSearchSpace'])
+        self.params_info = self._param_info_from_search_space(
+            experiment_spec['nniConfigSearchSpace'])
 
     def _param_info_from_search_space(self, search_space):
         steps_with_params = {}
@@ -28,7 +30,12 @@ class PipelineBuilder(object):
         # a step in the pipeline
         sklearn_steps = []
         for k, v in self.steps.items():
-            estimator_cls = get_class(v)
+            estimator_cls = get_class(v['type'])
+
+            # find the default params if any
+            kwargs = {}
+            if 'classArgs' in v:
+                kwargs.update(v['classArgs'])
 
             # find the arguments for this estimator and set their values
             # using nni_hparams
@@ -37,7 +44,6 @@ class PipelineBuilder(object):
                 sklearn_steps.append((k, estimator_cls()))
                 continue
 
-            kwargs = {}
             for p in self.params_info[k]:
                 kwargs[p] = nni_hparams[f"{k}_{p}"]
 

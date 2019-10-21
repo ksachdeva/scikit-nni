@@ -16,9 +16,12 @@ dataSource:
 sklearnPipeline:
     name: normalizer_svc
     steps:
-        normalizer: sklearn.preprocessing.Normalizer
-        pca: sklearn.decomposition.PCA
-        logistic_regression: sklearn.linear_model.LogisticRegression
+        normalizer:
+            type: sklearn.preprocessing.Normalizer
+        pca:
+            type: sklearn.decomposition.PCA
+        logistic_regression:
+            type: sklearn.linear_model.LogisticRegression
 
 # This section is more or less compliant with the NNI's
 # way of specifying the hyper parameters except that you
