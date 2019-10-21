@@ -270,6 +270,33 @@ This is same as running `nnitctl`
     nnictl create --config experiments/svc-classification/config.yml
 
 
+Troubleshooting
+---------------
+
+My trials are failing what is wrong ?
+#####################################
+
+Your trial could fail for many reasons -
+
+* Bug in your DataSource code resulting the exception/error
+
+* Wrong inputs to your (or built-in) DataSources resulting in exception/error
+
+* Your DataSource (python callable) could not be found
+
+Here is what I would recommend -
+
+* Test your DataSource code
+
+* The webui does not always display all the errors/logs so look at the log of your trials and more specifically stderr file
+
+    .. code-block:: bash
+
+        cat $HOME/nni/experiments/<YOUR_EXPERIMENT_ID>/trials/<TRIAL_ID>/stderr
+
+        cat $HOME/nni/experiments/<YOUR_EXPERIMENT_ID>/trials/<TRIAL_ID>/trial.log
+
+
 Credits
 -------
 
