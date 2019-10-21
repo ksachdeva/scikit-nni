@@ -11,14 +11,14 @@ dataSource:
         dir_path: /Users/ksachdeva/Desktop/Dev/myoss/scikit-nni/examples/data/multiclass-classification
 
 # This is how you specify a pipeline and steps
-# In this example there are 3 steps - normalizer, pca and svc
+# In this example there are 3 steps - normalizer, pca and logistic regression
 # Please note that you would have to specify the fully qualified name for the classes
 sklearnPipeline:
     name: normalizer_svc
     steps:
         normalizer: sklearn.preprocessing.Normalizer
         pca: sklearn.decomposition.PCA
-        svc: sklearn.svm.SVC
+        logistic_regression: sklearn.linear_model.LogisticRegression
 
 # This section is more or less compliant with the NNI's
 # way of specifying the hyper parameters except that you
@@ -31,29 +31,18 @@ nniConfigSearchSpace:
         n_components:
             _type: choice
             _value: [64,128]
-    - svc:
+    - logistic_regression:
         C:
             _type: uniform
             _value: [0.1,1]
-        kernel:
-            _type: choice
-            _value: [linear,rbf,poly,sigmoid]
-        degree:
-            _type: choice
-            _value: [1,2,3,4]
-        gamma:
-            _type: uniform
-            _value: [0.01,0.1]
-        coef0:
-            _type: uniform
-            _value: [0.01,0.1]
+
 
 # This is exactly same as the one that of NNI
 # except that you do not have to specify the command
 # and code fields. They are automatically added by the sknni generator
 nniConfig:
     authorName: ksachdeva
-    experimentName: pca-svc-classification
+    experimentName: pca-logistic-regression
     trialConcurrency: 1
     maxExecDuration: 1h
     maxTrialNum: 100
