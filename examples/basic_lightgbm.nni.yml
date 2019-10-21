@@ -1,0 +1,58 @@
+sknni: 0.1
+
+# Datasource is how you specify which callable
+# sknni will invoke to get the data
+dataSource:
+    reader: sknni.datasource.NpzClassificationSource
+    params:
+        # Note - dir_path is a parameter name for NpzClassificationSource
+        # if you create another datasource then specify the arguments of the callable
+        # as per your datasource
+        dir_path: /Users/ksachdeva/Desktop/Dev/myoss/scikit-nni/examples/data/multiclass-classification
+
+# This is how you specify a pipeline and steps
+# In this example there are two steps - normalizer and lightgbm
+# Please note that you would have to specify the fully qualified name for the classes
+#
+# Make sure to install lightgbm as scikit-nni does not install that for you
+sklearnPipeline:
+    name: normalizer_lightgbm
+    steps:
+        normalizer:
+            type: sklearn.preprocessing.Normalizer
+        lightgbm:
+            type: lightgbm.LGBMClassifier
+            classArgs:
+                objective: multiclass
+
+# This section is more or less compliant with the NNI's
+# way of specifying the hyper parameters except that you
+# should specify them with their corresponding step using the
+# same name as you used earlier in the pipeline definition
+nniConfigSearchSpace:
+    - lightgbm:
+        num_leaves:
+            _type: choice
+            _value: [31,41,51]
+        boosting_type:
+            _type: choice
+            _value: [gbdt, 'goss', 'dart']
+
+
+# This is exactly same as the one that of NNI
+# except that you do not have to specify the command
+# and code fields. They are automatically added by the sknni generator
+nniConfig:
+    authorName: ksachdeva
+    experimentName: lightgbm-classification
+    trialConcurrency: 1
+    maxExecDuration: 1h
+    maxTrialNum: 100
+    trainingServicePlatform: local
+    useAnnotation: false
+    tuner:
+        builtinTunerName: TPE
+        classArgs:
+            optimize_mode: maximize
+    trial:
+        gpuNum: 0
