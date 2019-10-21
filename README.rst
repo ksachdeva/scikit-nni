@@ -34,6 +34,30 @@ scikit-nni is a helper tool (and a package) that :
     - generates the configuration (config.yaml & search-space.json) required for NNI
     - automatically builds the scikit-learn pipelines based on your specification and becomes an experiment/trial code for Microsoft NNI to run.
 
+What value does this tool add to Microsoft NNI ?
+###################################################
+
+First note that this tool is specifically written to only help with scikit-learn pipelines and to tune classification algorithms. In near future,
+I would add the support for regression algorithms as well.
+
+Now when you use Microsoft NNI you need to specify (at minimum) 3 files :
+
+    - A search space (json) file that contains the parameters that you want to search/tune.
+
+    - Your code/experiment. In your experiment code, you perform these tasks in sequence :
+        - Request for the parameters from NNI server
+        - Create your model using these parameters
+        - Fit your model
+        - Score your model
+        - Report the score to NNI server.
+
+    - a configuration file where you specify the tuner, which mode to use to run, path to your code file and search space file.
+
+`scikit-nni` eliminiates the second step i.e. it builds the scikit pipelines, request NNI server for parameters and also report back the score of your model.  It also simplifies (in IMHO) the input
+specification by only requiring one file instead of 3.
+
+Sounds interesting ? Then read the documentation below, install scikit-nni, and more importantly provide feedback if it does not work for you and/or you think it can be improved.
+
 Features
 --------
 
