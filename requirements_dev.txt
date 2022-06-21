@@ -33,7 +33,7 @@ mccabe==0.6.1
 more-itertools==7.2.0
 networkx==2.2
 nni==1.0
-numpy==1.17.3
+numpy==1.22.0
 packaging==19.2
 pathtools==0.1.2
 pbr==5.4.3
