@@ -6,7 +6,7 @@ Babel==2.7.0
 bleach==3.1.0
 bson==0.5.8
 bump2version==0.5.11
-certifi==2019.9.11
+certifi==2022.12.7
 chardet==3.0.4
 Click==7.0
 cloudpickle==1.2.2
